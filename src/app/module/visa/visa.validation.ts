@@ -3,47 +3,38 @@ import { z } from "zod";
 
 
 
-const createVisaZodValidation =  z.object({
-        userImg: z.string(),
-        userQrCodeImg: z.string(),
-        visaApplicationStatus: z.string(),
-        applicationStatusDate: z.string(),
-        referenceNumber: z.string(),
-        passportCountry: z.string(),
-        passportType: z.string(),
-        passportNumber: z.string(),
-        passportIssueDate: z.string(),
-        passportExpirationDate: z.string(),
-        name: z.string(),
-        surname: z.string(),
-        middleNameOrPatronymic: z.string().optional(),
-        birthDate: z.string(),
-        visaType: z.string(),
-        visaDuration: z.number(),
-        entryTimes: z.string(),
-        visaValidityPeriod: z.string(),
-    });
+const createVisaZodValidation = z.object({
+    userImg: z.string(),
+    dateOfApplication: z.string(),
+    surName: z.string(),
+    name: z.string(),
+    dob: z.string(),
+    sex: z.enum(['MALE', 'FEMALE', 'OTHER']),
+    travelDocumentNumber: z.string(),
+    validityStart: z.string(),
+    validityEnd: z.string(),
+    duration: z.string(),
+    numberOfentries: z.string(),
+    grantDecisionNumber: z.string(),
+    grantDecisionDate: z.string(),
+    passportNumber: z.string(),
+});
 
-const updateVisaZodValidation =  z.object({
-        userImg: z.string().optional(),
-        userQrCodeImg: z.string().optional(),
-        visaApplicationStatus: z.string().optional(),
-        applicationStatusDate: z.string().optional(),
-        referenceNumber: z.string().optional(),
-        passportCountry: z.string().optional(),
-        passportType: z.string().optional(),
-        passportNumber: z.string().optional(),
-        passportIssueDate: z.string().optional(),
-        passportExpirationDate: z.string().optional(),
-        name: z.string().optional(),
-        surname: z.string().optional(),
-        middleNameOrPatronymic: z.string().optional(),
-        birthDate: z.string().optional(),
-        visaType: z.string().optional(),
-        visaDuration: z.number().optional(),
-        entryTimes: z.string().optional(),
-        visaValidityPeriod: z.string().optional(),
-    });
-
+const updateVisaZodValidation = z.object({
+    userImg: z.string().optional(),
+    dateOfApplication: z.string().optional(),
+    surName: z.string().optional(),
+    name: z.string().optional(),
+    dob: z.string().optional(),
+    sex: z.enum(['MALE', 'FEMALE', 'OTHER']).optional(),
+    travelDocumentNumber: z.string().optional(),
+    validityStart: z.string().optional(),
+    validityEnd: z.string().optional(),
+    duration: z.string().optional(),
+    numberOfentries: z.string().optional(),
+    grantDecisionNumber: z.string().optional(),
+    grantDecisionDate: z.string().optional(),
+    passportNumber: z.string().optional(),
+});
 
     export const visaZodValidation = {createVisaZodValidation, updateVisaZodValidation};

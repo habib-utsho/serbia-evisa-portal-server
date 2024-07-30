@@ -6,16 +6,16 @@ import { TVisa } from "./visa.interface";
 import Visa from "./visa.model";
 
 const createVisa = async (payload: TVisa) => {
-  const isExistVisa = await Visa.findOne({referenceNumber: payload?.referenceNumber});
+  const isExistVisa = await Visa.findOne({referenceNumber: payload?.passportNumber});
   if(isExistVisa){
-    throw new AppError(StatusCodes.CONFLICT ,'Visa already exists with this reference number!')
+    throw new AppError(StatusCodes.CONFLICT ,'Visa already exists with this passport number!')
   }
   const result = await Visa.create(payload);
   return result;
 };
 const getAllVisa = async (query:Record<string,unknown>) => {
   const visaQuery = new QueryBuilder(Visa.find(), query)
-  .searchQuery(['name', 'surname', 'referenceNumber', 'passportNumber'])
+  .searchQuery(['name', 'eVisaId', 'passportNumber'])
   .filterQuery()
   .paginateQuery()
   .sortQuery()
@@ -28,8 +28,8 @@ const visas = await visaQuery.queryModel
 
 return {visas, totalVisas}
 };
-const getSingleVisa = async (referenceNumber: string) => {
-  const result = await Visa.findOne({referenceNumber});
+const getSingleVisa = async (id: string) => {
+  const result = await Visa.findOne({eVisaId: id});
   return result;
 };
 const deleteVisa = async (id: string) => {

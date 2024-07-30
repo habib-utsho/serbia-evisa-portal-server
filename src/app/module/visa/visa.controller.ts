@@ -32,7 +32,7 @@ const getAllVisa: RequestHandler = catchAsync(async (req, res, next) => {
 });
 
 const getSingleVisa: RequestHandler = catchAsync(async (req, res, next) => {
-  const visa = await visaServices.getSingleVisa(req.params?.referenceNumber as string);
+  const visa = await visaServices.getSingleVisa(req.params?.id as string);
   if (!visa) {
     throw new Error("Visa is not found!");
   }
