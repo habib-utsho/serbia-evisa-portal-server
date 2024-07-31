@@ -5,7 +5,7 @@ import { generateEVisaId } from "../../utils/generateVisaId";
 
 const visaSchema = new mongoose.Schema<TVisa>({
   userImg: { type: String, required: true },
-  applicationId: { type: String, required: true },
+  applicationId: { type: String, },
   dateOfApplication: { type: String, required: true },
   surName: { type: String, required: true },
   name: { type: String, required: true },
@@ -18,8 +18,8 @@ const visaSchema = new mongoose.Schema<TVisa>({
   numberOfentries: { type: String, required: true },
   grantDecisionNumber: { type: String, required: true },
   grantDecisionDate: { type: String, required: true },
-  eVisaId: { type: String, required: true },
-  eVisaVerificationCode: { type: String, required: true },
+  eVisaId: { type: String },
+  eVisaVerificationCode: { type: String },
   passportNumber: { type: String, required: true }
 }, { timestamps: true });
 

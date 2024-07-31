@@ -6,7 +6,7 @@ import { TVisa } from "./visa.interface";
 import Visa from "./visa.model";
 
 const createVisa = async (payload: TVisa) => {
-  const isExistVisa = await Visa.findOne({referenceNumber: payload?.passportNumber});
+  const isExistVisa = await Visa.findOne({passportNumber: payload?.passportNumber});
   if(isExistVisa){
     throw new AppError(StatusCodes.CONFLICT ,'Visa already exists with this passport number!')
   }
