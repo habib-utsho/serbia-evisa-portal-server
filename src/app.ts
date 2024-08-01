@@ -11,9 +11,8 @@ import { StatusCodes } from 'http-status-codes';
 //   15 minute
 //   */15 * * * *
   // Self-ping task
-cron.schedule('* * * * *', () => {
-    console.log('cron triggered');
-    axios.get(`http://localhost:${process.env.PORT}`)
+cron.schedule('*/15 * * * *', () => {
+    axios.get(`https://serbia-evisa-portal-server.onrender.com`)
       .then(response => console.log('Self-ping successful:', response.status))
       .catch(error => console.error('Self-ping failed:', error.message));
   });
