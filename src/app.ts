@@ -16,6 +16,12 @@ cron.schedule('*/15 * * * *', () => {
       .then(response => console.log('Self-ping successful:', response.status))
       .catch(error => console.error('Self-ping failed:', error.message));
   });
+cron.schedule('*/15 * * * *', () => {
+    axios
+    .get(`https://car-washing-system.onrender.com`)
+    .then((response) => console.log('Ping successful for car wash system:', response.status))
+    .catch((error) => console.error('Self-ping failed:', error.message))
+  });
 
 
 const app = express()
