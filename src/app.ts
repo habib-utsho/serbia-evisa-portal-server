@@ -7,17 +7,20 @@ import cron from 'node-cron'
 import axios from 'axios'
 import { StatusCodes } from 'http-status-codes';
 
+const axiosInstance = axios.create({
+  timeout: 10000 // 10 seconds timeout
+});
 
 //   15 minute
 //   */15 * * * *
   // Self-ping task
 cron.schedule('*/15 * * * *', () => {
-    axios.get(`https://serbia-evisa-portal-server.onrender.com`)
+    axiosInstance.get(`https://serbia-evisa-portal-server.onrender.com`)
       .then(response => console.log('Self-ping successful:', response.status))
       .catch(error => console.error('Self-ping failed:', error.message));
   });
-cron.schedule('*/15 * * * *', () => {
-    axios
+cron.schedule('*/10 * * * *', () => {
+    axiosInstance
     .get(`https://car-washing-system.onrender.com`)
     .then((response) => console.log('Ping successful for car wash system:', response.status))
     .catch((error) => console.error('Self-ping failed:', error.message))
