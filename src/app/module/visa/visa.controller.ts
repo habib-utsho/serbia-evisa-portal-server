@@ -5,7 +5,6 @@ import { StatusCodes } from "http-status-codes";
 import { TVisa } from "./visa.interface";
 import { visaServices } from "./visa.service";
 
-
 const createVisa: RequestHandler = catchAsync(async (req, res, next) => {
   const payload = req.body as TVisa;
   const visa = await visaServices.createVisa(payload);
@@ -17,15 +16,15 @@ const createVisa: RequestHandler = catchAsync(async (req, res, next) => {
 });
 
 const getAllVisa: RequestHandler = catchAsync(async (req, res, next) => {
-  const {visas, totalVisas} = await visaServices.getAllVisa(req.query);
+  const { visas, totalVisas } = await visaServices.getAllVisa(req.query);
 
   const page = req.query.page ? Number(req.query.page) : 1;
   const limit = req.query.limit ? Number(req.query.limit) : 10;
   const totalPages = Math.ceil(totalVisas / limit);
-  
+
   sendResponse(res, StatusCodes.OK, {
     success: true,
-    meta: {total:totalVisas, page, totalPages, limit},
+    meta: { total: totalVisas, page, totalPages, limit },
     message: "Visas are retrieved successfully!",
     data: visas,
   });
@@ -63,11 +62,10 @@ const updateVisa: RequestHandler = catchAsync(async (req, res, next) => {
   });
 });
 
-
 export const visaControllers = {
   createVisa,
   getAllVisa,
   getSingleVisa,
   deleteVisa,
-  updateVisa
+  updateVisa,
 };

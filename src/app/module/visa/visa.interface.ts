@@ -7,6 +7,7 @@ type TVisa = {
     name: string;
     dob: string;
     sex: "MALE" | "FEMALE" | "OTHER";
+    category: "РАД / WORK" | "ТУРИСТ / TOURIST" | "БИЗНИС / BUSINESS";
     travelDocumentNumber: string;
     validityStart: string;
     validityEnd: string;
